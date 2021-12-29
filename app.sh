@@ -21,20 +21,12 @@ build_docker(){
 
 
 status_docker(){
-    echo "Choose option 1 to see the status of the container created"
-    echo "Choose option 2 to see all running containers or exited services"
-    read option
-
-    if [[ option -eq 1 ]]; then
+    echo "Seeing the status of the container created"
         if [[ "$(docker ps -aq -f status=running -f name=flask_app)" ]]; then
             echo "Container is running!!"
         else
             echo "Container is not running!!"
         fi
-    else
-        echo "Showing all running services or exited services"
-        docker ps -a
-    fi
 }
 
 
