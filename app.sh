@@ -1,7 +1,7 @@
 #!/bin/bash
 
 help(){
-    echo "Syntax: ./app.sh [-h] or [[start|status|stop] ]"
+    echo "Syntax: ./app.sh [-h] or [[build|status|stop] ]"
     echo
     echo "Options:"
     echo "-h        Print the help"
