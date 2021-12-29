@@ -7,25 +7,16 @@ help(){
     echo "-h        Print the help"
     echo
     echo "Operations:"
-    echo "start     Build and start container"
+    echo "build     Build container"
     echo "stop      Stop container"
     echo "status    Show the status of the container"
     
 }
 
 
-start_docker(){
-    if [[ "$(docker ps -a -f name=flask_app -q)" ]]; then
-        echo "Starting the exited service"
-        docker start "$(docker ps -a -f name=flask_app -q)"        
-    elif [[ "$(docker images -q flask_app)" ]]; then 
-        echo "Running the service that already was build"
-        docker run -d --rm -p 8080:8080 --name flask_app flask_app   
-    else
-        echo "Building service and running"
-        docker build -t flask_app .
-        docker run -d --rm -p 8080:8080 --name flask_app flask_app        
-    fi
+build_docker(){
+    echo "Building service and running"
+    docker build -t flask_app .    
 }
 
 
@@ -65,8 +56,8 @@ while getopts ":h" option; do
 done
 
 case "$1" in
-    start)
-        start_docker
+    build)
+        build_docker
         ;;
     status)
         status_docker
